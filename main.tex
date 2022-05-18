@@ -1,0 +1,34 @@
+\documentclass[a4paper,12pt]{scrartcl}
+\usepackage[lmargin = 2cm, rmargin = 2cm, nomarginpar, top=3cm]{geometry}
+
+% Importiere alle weiteren Packages:
+\input{Dateien/Sonstiges/packages}
+% Definiere eigene Kommandos:
+\input{Dateien/Sonstiges/custom_commands}
+% Definiere eigene Abkürzungen
+\input{Dateien/Sonstiges/abbreviations}
+
+
+\automark{section}
+
+% Zeugs für die Kopf- und Fußzeile
+\ihead{\textit{\Kurztitel}}
+\chead{\emph{\headmark}}
+\ohead{\Zeitraum}
+\cfoot{\pagemark}
+
+
+\begin{document}
+
+\include{Sektionen/titlepage}  % Achtung, include funktioniert anders als input!
+
+\tableofcontents
+
+\newpage
+
+% So kannst du z. B. eigene Kapitel einfügen:
+\input{Sektionen/beispieltext}
+
+
+
+\end{document}

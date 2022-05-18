@@ -1,0 +1,87 @@
+
+% Schönere Referenzen:
+\let\oldhref\href
+\renewcommand{\href}[2]{\oldhref{#1}{\underline{\bfseries#2}}} % Damit Links fett und unterstrichen werden
+
+
+% Eine Antwort-Umgebung, in der alles verkehrt herum geschrieben wird:
+\NewEnviron{Answer}
+{%
+\noindent
+\rotatebox[origin=c]{180}{%
+\noindent
+\begin{minipage}[t]{\linewidth}
+\BODY
+\end{minipage}%
+}%
+}%
+
+
+% Einige farbige Boxen für Beispiele, Definitionen und Sätze
+% Definition
+\definecolor{mygreen}{RGB}{17,100,8}
+\newtcolorbox[auto counter,number within=section]{Def}[2][]{%
+breakable, enhanced, sharp corners, rounded corners=northwest, rounded corners=southeast, colback=blue!5!white,colframe=black!75!black,fonttitle=\bfseries,
+title=Definition~\thetcbcounter: #2,#1}
+% Satz (mit weiterem geforderten Argument für die Satzbezeichnung wie z. B. Theorem)
+\newtcolorbox[auto counter, number within=section]{Satz}[3][]{%
+breakable, enhanced, sharp corners, rounded corners=southwest, rounded corners=northeast, colback=blue!5!white,colframe=red!75!black,fonttitle=\bfseries,
+title=#2~\thetcbcounter: #3,#1}
+% Beispiele
+\newtcolorbox[auto counter,number within=section]{Beispiel}[2][]{%
+breakable, enhanced, colback=blue!5!white,colframe=blue!75!black, fonttitle=\bfseries,
+title=Beispiel~\thetcbcounter: #2,#1}
+% Wiederholungen
+\newtcolorbox[auto counter,number within=section]{Wiederholung}[2][]{%
+breakable, enhanced, sharp corners, colback=green!5!white,colframe=mygreen!75!black, fonttitle=\bfseries,
+title=Wiederholung~\thetcbcounter: #2,#1}
+
+
+% Generelles Zeugs zum Aussehen:
+\def\stretchint#1{\vcenter{\hbox{\stretchto[440]{\displaystyle\int}{#1}}}}
+\def\bs{\mkern-12mu}
+\pagestyle{scrheadings}
+\clearpairofpagestyles
+
+
+\numberwithin{equation}{section}
+\let\oldsection\section  % Footnotecounter resetten
+\renewcommand{\section}{\setcounter{footnote}{0}\oldsection}
+\renewcommand{\thefootnote}{\Roman{footnote}}
+\setlist[itemize]{topsep=1pt, itemsep=0pt, parsep=0.5pt}  % Itemize manipulieren
+\setlist[enumerate]{topsep=1pt, itemsep=0pt, parsep=0.5pt}  % Itemize manipulieren
+
+
+%%% Setzen der Code-Umgebung
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.7,0,0}
+
+\lstset{ %
+  backgroundcolor=\color{white},    % choose the background color
+  basicstyle = \ttfamily,
+  columns=fullflexible,
+  breaklines=true,                  % automatic line breaking only at whitespace
+  captionpos=b,                     % sets the caption-position to bottom
+  commentstyle=\color{mygray},      % comment style
+  frame=single,                     % Falls wir den Code einrahmen wollen
+  language=python,                  % Wir benutzen nur Python
+  showstringspaces=false,           % Damit keine komischen Leerzeichen angezeigt werden
+  escapeinside={\%*}{*)},           % Für Latex im Code
+  keywordstyle=\color{mygreen},     % keyword style
+  stringstyle=\color{mymauve},      % string literal stylehttps://www.overleaf.com/project/5f50ba666b494e0001a2f9b9
+}
+
+
+
+%%%%%%%%%%% Titel, Profs, Zeitraum etc.
+\newcommand{\titel}{Klausurvorbereitung WiSe 2020/2021\\
+Einführung in die Geophysik}
+\newcommand{\Kurztitel}{EGeo-Vorbereitung}
+\newcommand{\Zeitraum}{SoSe 2021}
+\newcommand{\Profs}{Zur Vorlesung von \textsf{Prof. Gajewski, Prof. Hort,\\Prof. Hübscher} und \textsf{Prof. Schippkus}}
+\newcommand{\Autor}{Fabian Balzer}
+\newcommand{\Version}{Version vom \today}
+\title{\titel}
+\date{\Zeitraum}
+%%%%%%%%%%%
